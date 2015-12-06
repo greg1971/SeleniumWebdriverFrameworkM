@@ -1,6 +1,7 @@
-# SeleniumWebdriverFramework
+# Selenium Webdriver Framework
 Framework for start writing Junit Test Cases making use of the Java Webdriver API
 
+## Project Summary
 The Framework consists of the following:
 * A Factory pattern for instantiating Webdriver objects, for creating Webdriver objects without exposing the creation logic to the client and refer to newly created object using a common interface. For more info you may refer to http://www.tutorialspoint.com/design_pattern/factory_pattern.htm
 * A Utility class providing:
