@@ -41,7 +41,7 @@ public class UnitTestCase0x {
 	@After
 	public void tearDown() throws Exception {
 		
-		mydriver.quit();
+		
 		/**
 		 * Any potential errors are logged into a file
 		 */
@@ -54,16 +54,18 @@ public class UnitTestCase0x {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws InterruptedException {
 		try {
 			/* an enum value is passed to WebdriverUtilities, corresponding to the supported
 			 * browsers 
 			 */
 			
 			mydriver = WebdriverFactory
-					.createWebDriver(WebdriverUtilities.Browser.INTERNETEXPLORER);
+					.createWebDriver(WebdriverUtilities.Browser.FIREFOX);
 			WebdriverUtilities.setBASEURL();
 			mydriver.get(WebdriverUtilities.getBASEURL());
+			Thread.sleep(3000);
+			mydriver.quit();;
 		}
 		catch (Error e) {
 			verificationErrors.append(e.toString());
