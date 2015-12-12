@@ -32,14 +32,17 @@ public class WebdriverUtilities {
 	public enum Browser {
 		FIREFOX, INTERNETEXPLORER
 	}
+	
 	/** BASEURL is where the browser will initially navigate to. Later on, will be accessed
 	 * from the config.properties file */
+	
 	private static String BASEURL;
 	/** Timeout period for the webdriver in seconds. It is used when creating the
 	 * webdriver */
+	
 	public static final long TIMOUT_WAITSEC = 30;
 
-	/** Getter ofthe BASEURL, where the browser should initially navigate to
+	/** Getter of the BASEURL, where the browser should initially navigate to
 	 * 
 	 * @return			Returns the string pertaining to the BASEURL constant, where the browser should initially navigate to
 	 */
@@ -51,7 +54,7 @@ public class WebdriverUtilities {
 	 * by using the IO API.
 	 * The property found is stored to the <b>BASEURL</b> constant.
 	 */
-	public static void setBASEURL() {
+	public static void setBASEURL() throws FileNotFoundException{
 
 		try {
 			File file = new File("config.properties");
@@ -62,13 +65,15 @@ public class WebdriverUtilities {
 			BASEURL = properties.getProperty("home_page");
 			System.out.println("BASEURL has been set and is:"+BASEURL);
 		} catch (FileNotFoundException e) {
+		System.out.println("The config.properties files should exist in the home directory");
 			e.printStackTrace();
+			throw new FileNotFoundException("Config.properties does not exist");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	/** Overloaded method, worls like a setter, in case that the user needs to
+	/** Overloaded method, works like a setter, in case that the user needs to
 	 * define himself the <b>BASEURL</b>, instead of having it set from the properites file.
 	 */
 	public static void setBASEURL(String url) {

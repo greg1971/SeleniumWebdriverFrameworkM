@@ -2,11 +2,14 @@ package com.webdriverFrameworkM;
 
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /** From this point on, the junit test starts its execution. 
@@ -62,14 +65,55 @@ public class UnitTestCase0x {
 			
 			mydriver = WebdriverFactory
 					.createWebDriver(WebdriverUtilities.Browser.FIREFOX);
+			try 
+			{
 			WebdriverUtilities.setBASEURL();
 			mydriver.get(WebdriverUtilities.getBASEURL());
 			Thread.sleep(3000);
-			mydriver.quit();;
+			}
+			catch (FileNotFoundException fe)
+			{
+			verificationErrors.append(fe.toString());
+			}			
+			
+			mydriver.quit();
 		}
 		catch (Error e) {
 			verificationErrors.append(e.toString());
 		}
 	}
-
+	
+	@Test
+	/* Displays how you can locate an item by ID*/
+	public void testFindElementByID() throws InterruptedException {
+		
+		try {
+			/* an enum value is passed to WebdriverUtilities, corresponding to the supported
+			 * browsers 
+			 */
+			
+			mydriver = WebdriverFactory
+					.createWebDriver(WebdriverUtilities.Browser.FIREFOX);
+			try 
+			{
+			WebdriverUtilities.setBASEURL();
+			mydriver.get(WebdriverUtilities.getBASEURL());
+			mydriver.findElement(By.id("lst-ib")).sendKeys("Boca Juniors");
+			mydriver.findElement(By.id("lst-ib")).click();
+			Thread.sleep(3000);
+			}
+			catch (FileNotFoundException fe)
+			{
+			verificationErrors.append(fe.toString());
+			}			
+			
+			mydriver.quit();
+		}
+		catch (Error e) {
+			verificationErrors.append(e.toString());
+		}
+	
+	}
 }
+
+
